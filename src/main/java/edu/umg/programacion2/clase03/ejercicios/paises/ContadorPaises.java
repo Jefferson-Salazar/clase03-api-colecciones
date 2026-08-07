@@ -1,5 +1,6 @@
 package edu.umg.programacion2.clase03.ejercicios.paises;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,14 +22,26 @@ import edu.umg.programacion2.clase03.modelo.Usuario;
  * <p>
  * Criterios de evaluación:
  * - No usa streams ni lambdas, solo un for-each y el Map.
- * - Usa Map.getOrDefault(), no un HashSet auxiliar ni un if con
+ * - Uses Map.getOrDefault(), no un HashSet auxiliar ni un if con
  *   containsKey() por separado.
  * - Si la lista está vacía, retorna un Map vacío (no null).
  */
 public class ContadorPaises {
 
 	public Map<String, Integer> contarPorPais(List<Usuario> usuarios) {
-		// TODO: reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException("TODO: completar contarPorPais() en ContadorPaises");
+		Map<String, Integer> conteo = new HashMap<>();
+
+		if (usuarios == null) {
+			return conteo;
+		}
+
+		for (Usuario usuario : usuarios) {
+			if (usuario.getPais() != null) {
+				String pais = usuario.getPais();
+				conteo.put(pais, conteo.getOrDefault(pais, 0) + 1);
+			}
+		}
+
+		return conteo;
 	}
 }
